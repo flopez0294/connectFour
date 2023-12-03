@@ -18,6 +18,12 @@ struct Board {
             grid[i] = new int[size];
         }
     }
+
+    bool play(int column) {
+        if (grid[0][column] != -1) {
+            return false;
+        }
+    }
 };
 
 #endif 
