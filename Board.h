@@ -19,8 +19,38 @@ struct Board {
         }
     }
 
+    bool hasWon(bool player) {
+        for (int i = 0; i < size; i++) {
+            int column = 0; 
+            for (int j = 0; j < size; j++) {
+                if (grid[j][i] == player) {
+                    column++;
+                } else {
+                    column = 0;
+                }
+                if (column == 4) {
+                    return true;
+                }
+            }
+        }
+        
+        for (int i  = 0; i < size; i++) {
+            int row = 0;
+            for (int j = 0; j < size; j++) {
+                if (grid[i][j] == player) {
+                    row++;
+                } else {
+                    row = 0;
+                }
+                if (row == 4) {
+                    return true;
+                }
+            }
+        }
+    }
+
     bool play(int column) {
-        if (grid[0][column] != -1 || column > 6 || column < -1) {
+        if (grid[0][column] != -1 || column > 6 || column < 0) {
             return false;
         }
 
