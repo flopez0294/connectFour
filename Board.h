@@ -67,6 +67,22 @@ struct Board {
             }
         }
 
+        for (int i = 0; i <= size/2; i++) {
+            for (int j = size - 1; j >= size/2; j--) {
+                int secondaryDiagonal = 0;
+                for (int k = 0; k <= size/2; k++) {
+                    if (grid[j-k][k+i] == player){
+                        secondaryDiagonal++;
+                    } else {
+                        secondaryDiagonal = 0;
+                    }
+                    if (secondaryDiagonal == 4) {
+                        return true;
+                    }
+                }
+            }
+        }
+
         return false;
     }
 
