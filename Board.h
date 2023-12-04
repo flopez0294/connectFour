@@ -50,6 +50,23 @@ struct Board {
                 }
             }
         }
+        
+        for (int i = 0; i <= size/2; i++) {
+            for (int j = 0; j <= size/2; j++) {
+                int mainDiagonal = 0;
+                for (int k = 0; k <= size/2; k++) {
+                    if (grid[j+k][k+i] == player) {
+                        mainDiagonal++;
+                    } else {
+                        mainDiagonal = 0;
+                    }
+                    if (mainDiagonal == 4) {
+                        return true;
+                    }
+                }
+            }
+        }
+
         return false;
     }
 
