@@ -20,9 +20,26 @@ struct Board {
     }
 
     bool play(int column) {
-        if (grid[0][column] != -1) {
+        if (grid[0][column] != -1 || column > 6 || column < -1) {
             return false;
         }
+
+        for (int i = size - 1; i > 0; i--) {
+            if (grid[i][column] == -1) {
+                grid[i][column] = player;
+                break;
+            }
+        }
+        
+        playerTurn = !playerTurn;
+        turnCount++;
+
+        if (turnCount == size*size) {
+            done = true;
+        } else if (hasWon(0) || hasWon(1)) {
+            done = true;
+        }
+        return true;
     }
 };
 
