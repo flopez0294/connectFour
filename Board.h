@@ -56,7 +56,7 @@ struct Board {
 
         for (int i = size - 1; i > 0; i--) {
             if (grid[i][column] == -1) {
-                grid[i][column] = player;
+                grid[i][column] = playerTurn;
                 break;
             }
         }
@@ -72,5 +72,39 @@ struct Board {
         return true;
     }
 };
+
+std::ostream& operator<<(std::ostream& os, const Board& game) {
+    os << "   ";
+    for (int j = 0; j < game.size; j++){
+        os << " " << j << "  ";
+    }
+    os << std::endl;
+    os << "   ";
+    for (int j = 0; j < game.size; j++){
+        os << "--- ";
+    }
+    os << std::endl;
+    for (int i = 0; i < game.size; i++){
+        os << i << " ";
+        for (int j = 0; j < game.size; j++){
+            char c = ' ';
+            if (game.grid[i][j] == 0){
+                c = 'X';
+            }
+            else if (game.grid[i][j] == 1){
+                c = 'O';
+            }
+            os << "| " << c << " ";
+            if (j == game.size - 1) os << "|";
+        }
+        os << std::endl << "   ";
+        for (int j = 0; j < game.size; j++){
+            os << "--- ";
+        }
+        os << std::endl;
+    }
+
+    return os;
+}
 
 #endif 

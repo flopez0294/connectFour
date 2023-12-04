@@ -15,7 +15,7 @@ int main() {
         std::cout << "Enter move for (" << (!game.playerTurn ? "X" : "O") << "): ";
         std::cin >> x;
 
-        game.play();
+        game.play(x);
     }
 
     system("clear");
