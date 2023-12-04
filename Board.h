@@ -54,7 +54,7 @@ struct Board {
             return false;
         }
 
-        for (int i = size - 1; i > 0; i--) {
+        for (int i = size - 1; i >= 0; i--) {
             if (grid[i][column] == -1) {
                 grid[i][column] = playerTurn;
                 break;
@@ -71,21 +71,27 @@ struct Board {
         }
         return true;
     }
+
+    ~Board() {
+        for (int i = 0; i < size; i++) {
+            delete[] grid[i];
+        }
+        delete[] grid;
+    }
 };
 
 std::ostream& operator<<(std::ostream& os, const Board& game) {
-    os << "   ";
+    os << " ";
     for (int j = 0; j < game.size; j++){
-        os << " " << j << "  ";
+        os << "  " << j << "   ";
     }
     os << std::endl;
-    os << "   ";
+    os << " ";
     for (int j = 0; j < game.size; j++){
-        os << "--- ";
+        os << "----- ";
     }
     os << std::endl;
     for (int i = 0; i < game.size; i++){
-        os << i << " ";
         for (int j = 0; j < game.size; j++){
             char c = ' ';
             if (game.grid[i][j] == 0){
@@ -94,17 +100,16 @@ std::ostream& operator<<(std::ostream& os, const Board& game) {
             else if (game.grid[i][j] == 1){
                 c = 'O';
             }
-            os << "| " << c << " ";
+            os << "|  " << c << "  ";
             if (j == game.size - 1) os << "|";
         }
-        os << std::endl << "   ";
+        os << std::endl;
+        os << " ";
         for (int j = 0; j < game.size; j++){
-            os << "--- ";
+            os << "----- ";
         }
         os << std::endl;
     }
-
-    return os;
 }
 
 #endif 
