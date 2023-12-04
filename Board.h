@@ -47,6 +47,7 @@ struct Board {
                 }
             }
         }
+        return false;
     }
 
     bool play(int column) {
@@ -110,6 +111,7 @@ std::ostream& operator<<(std::ostream& os, const Board& game) {
         }
         os << std::endl;
     }
+    return os;
 }
 
 #endif 
