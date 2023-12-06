@@ -1,6 +1,8 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+#include <ostream>
+
 struct Board {
     int** grid;
     int size;
